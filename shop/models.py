@@ -1,9 +1,14 @@
 from django.db import models
+from django.utils.text import slugify
+from decimal import Decimal 
 
 class Category(models.Model):
     
-    name = models.CharField(max_length=100, verbose_name='Категория')
-    slug = models.SlugField(unique=True)
+    name = models.CharField('Название', max_length=100, verbose_name='Категория')
+    slug = models.SlugField('Слаг', unique=True, blank=True)
+    description = models.TextField('Описание', blank=True)
+    is_alive = models.BooleanField('Активна', default=True)
+    
 
     def __str__(self):
         return self.name
